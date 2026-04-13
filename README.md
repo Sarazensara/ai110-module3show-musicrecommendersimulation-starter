@@ -2,30 +2,41 @@
 
 ## Project Summary
 
-In this project you will build and explain a small music recommender system.
-
-Your goal is to:
-
-- Represent songs and a user "taste profile" as data
-- Design a scoring rule that turns that data into recommendations
-- Evaluate what your system gets right and wrong
-- Reflect on how this mirrors real world AI recommenders
-
-Replace this paragraph with your own summary of what your version does.
-
----
+This project simulates a simple music recommendation system using a content-based approach. Songs are represented using features such as genre, mood, energy, and tempo, while a user profile defines preferred values for those features. The system scores each song based on how closely it matches the user’s preferences and then ranks songs to recommend the top results. This project demonstrates how data can be transformed into personalized predictions using simple scoring logic.
 
 ## How The System Works
 
-Explain your design in plain language.
+This recommender system uses a content-based approach to suggest songs based on a user's preferences.
 
-Some prompts to answer:
+### Song Features
+Each song is represented using:
+- genre
+- mood
+- energy (0.0–1.0)
+- tempo_bpm
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
+### User Profile
+The user profile stores:
+- favorite_genre
+- favorite_mood
+- target_energy
+- target_tempo_bpm
+
+### Scoring Logic
+Each song is given a score based on how well it matches the user profile:
+
+- +2.0 points for matching genre
+- +1.5 points for matching mood
+- Additional points based on how close the song’s energy is to the target energy
+- Additional points based on how close the tempo is to the target tempo
+
+Songs that are closer to the user’s preferences receive higher scores.
+
+### Recommendation Process
+1. Load all songs from the dataset
+2. Score each song using the scoring function
+3. Sort songs from highest to lowest score
+4. Return the top K songs as recommendations
 
 You can include a simple diagram or bullet list if helpful.
 
@@ -68,39 +79,31 @@ You can add more tests in `tests/test_recommender.py`.
 
 ## Experiments You Tried
 
-Use this section to document the experiments you ran. For example:
+I experimented with changing the importance of different features in the scoring function.
 
-- What happened when you changed the weight on genre from 2.0 to 0.5
-- What happened when you added tempo or valence to the score
-- How did your system behave for different types of users
+When I reduced the weight of genre and increased the weight of energy, the recommendations became more focused on matching the overall “vibe” instead of the category. This made the results feel more flexible but sometimes less consistent.
+
+I also tested different user profiles such as high-energy pop, chill lofi, and intense rock. Each profile produced different results, which showed that the system responds well to changes in user preferences.
+
+When I removed mood from the scoring, the recommendations became less accurate because songs with the right energy but wrong emotional tone started appearing higher in the rankings.
 
 ---
 
 ## Limitations and Risks
 
-Summarize some limitations of your recommender.
+This recommender system has several limitations.
 
-Examples:
+First, it only uses a small dataset, so the recommendations are limited and may repeat often. Second, it relies heavily on genre and mood labels, which can create a filter bubble and reduce variety. Third, it does not understand deeper aspects of music such as lyrics, context, or cultural meaning.
 
-- It only works on a tiny catalog
-- It does not understand lyrics or language
-- It might over favor one genre or mood
-
-You will go deeper on this in your model card.
+Because the scoring system is simple, it may also favor certain features too strongly, which can bias the results toward specific types of songs.
 
 ---
 
 ## Reflection
 
-Read and complete `model_card.md`:
+This project helped me understand how recommendation systems turn user data into predictions. Even with a simple scoring system, the recommendations changed in meaningful ways depending on the user profile and feature weights.
 
-[**Model Card**](model_card.md)
-
-Write 1 to 2 paragraphs here about what you learned:
-
-- about how recommenders turn data into predictions
-- about where bias or unfairness could show up in systems like this
-
+It also showed me how bias can appear in systems like this. For example, giving too much importance to genre can limit diversity and create repetitive recommendations. This made me realize that real-world systems must carefully balance multiple factors to avoid unfair or narrow results.
 
 ---
 
