@@ -106,6 +106,10 @@ This project helped me understand how recommendation systems turn user data into
 It also showed me how bias can appear in systems like this. For example, giving too much importance to genre can limit diversity and create repetitive recommendations. This made me realize that real-world systems must carefully balance multiple factors to avoid unfair or narrow results.
 
 ---
+## Example Output
+
+![Terminal Output](results.png)
+
 
 ## 7. `model_card_template.md`
 
@@ -211,7 +215,3 @@ A few sentences about what you learned:
 - What surprised you about how your system behaved
 - How did building this change how you think about real music recommenders
 - Where do you think human judgment still matters, even if the model seems "smart"
-
-## Example Output
-
-![Terminal Output](./results.png)
