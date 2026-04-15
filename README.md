@@ -214,4 +214,4 @@ A few sentences about what you learned:
 
 ## Example Output
 
-![Terminal Output](results.png)
+![Terminal Output](./results.png)
